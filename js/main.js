@@ -125,11 +125,15 @@ document.addEventListener("DOMContentLoaded", function() {
         
         xhr.open("POST", "mail/send_email.php", true);
         xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                const response = JSON.parse(xhr.responseText);
-                if (response.success) {
-                    document.getElementById('success').innerHTML = '<div class="alert alert-success">Your message has been sent successfully.</div>';
-                    form.reset();
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        document.getElementById('success').innerHTML = '<div class="alert alert-success">Your message has been sent successfully.</div>';
+                        form.reset();
+                    } else {
+                        document.getElementById('success').innerHTML = '<div class="alert alert-danger">There was an error sending your message. Please try again later.</div>';
+                    }
                 } else {
                     document.getElementById('success').innerHTML = '<div class="alert alert-danger">There was an error sending your message. Please try again later.</div>';
                 }
