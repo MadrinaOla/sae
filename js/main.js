@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const formData = new FormData(form);
         const xhr = new XMLHttpRequest();
         
-        xhr.open("POST", "mail/send_email.php", true);
+        xhr.open("POST", "mail/send_mail.php", true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
